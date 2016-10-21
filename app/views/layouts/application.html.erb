@@ -7,8 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<nav>
+<div class="nav-wrapper">
+      <a href="#" class="brand-logo left">Money Lender!!</a>
+      <div id="nav-mobile" class="right hide-on-med-and-down">
+<% if current_user %>
+		<div class="row">
+		 <div class="col 12s short">
+		  <form action='/sessions/logout' method='post'>
+		    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+		    <input type='hidden' name='_method' value='delete'>
+		    <input class="waves-effect waves-light btn small-btn" type='submit' value='Log Out'>
+		  </form>
+  		</div>
+  	  </div>
+<% end %>
+</div>
+</div>
+</nav>
+<div class="container">
 <%= yield %>
-
+</div>
 </body>
 </html>

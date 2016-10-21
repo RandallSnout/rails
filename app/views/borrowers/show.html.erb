@@ -1,0 +1,26 @@
+<h4>Hello <%=@user.first_name %> <%=@user.last_name %></h4>
+<p>Amount I need: $<%= @user.money %></p>
+<p>Amount Raised: $<%= @user.raised %></p>
+
+<h4>List of people who lent you money:</h4>
+<table class="striped outlined">
+<thead>
+  <tr>
+      <th data-field="id">Name</th>
+      <th data-field="name">Email</th>
+      <th data-field="price">Amount Lent</th>
+  </tr>
+</thead>
+
+<tbody>
+<% @helpers.each do |h| %>
+
+  <tr>
+    <td><%= h.first_name %> <%= h.last_name %></td>
+    <td><%= h.email %></td>
+    <td>$<%= h.money %></td>
+  </tr>
+
+<% end %>
+</tbody>
+</table>

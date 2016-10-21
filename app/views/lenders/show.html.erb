@@ -1,0 +1,70 @@
+<h4>Hello <%=@user.first_name %> <%=@user.last_name %></h4>
+<p>Account Balance: $<%= @user.money %></p>
+<% if flash[:error] %>
+	<p class="error"><%= flash[:error] %>
+<% end %>
+<h4>List of people who need help:</h4>
+<table class="striped outlined">
+<thead>
+  <tr>
+      <th data-field="name">Name</th>
+      <th data-field="description">Need Money for</th>
+      <th data-field="description">Reason for Loan</th>
+      <th data-field="price">Amount Needed</th>
+      <th data-field="price">Amount Rasied</th>
+      <th>Action</th>
+  </tr>
+</thead>
+
+<tbody>
+<% @freeloaders.each do |f| %>
+  <tr>
+    <td><%= f.first_name %><%= f.last_name %></td>
+    <td><%= f.purpose %></td>
+    <td><%= f.description %></td>
+    <td>$<%= f.money %></td>
+    <td>$<%= f.raised %></td>
+    <td>
+    	<div class="row">
+    	<p class="col s1">$</p>
+    	<form action="/lenders/<%= f.id %>/loan" method="post">
+    		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    		<div class="col s4">
+				<input id="money" type="number" name="donate">
+			</div>
+			<div class="col s4 top">
+			<input class="waves-effect waves-light btn" type="submit" value="Lend">
+			</div>
+    	</form>
+    	</div>
+    </td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<h4>List of Peiple you lent money to:</h4>
+<table class="striped outlined">
+<thead>
+  <tr>
+      <th data-field="name">Name</th>
+      <th data-field="description">Need Money for</th>
+      <th data-field="description">Reason for Loan</th>
+      <th data-field="price">Amount Needed</th>
+      <th data-field="price">Amount Rasied</th>
+      <th data-field="price">Amount Lent</th>
+  </tr>
+</thead>
+
+<tbody>
+<% @lenders.each do |f| %>
+  <tr>
+    <td><%= f.first_name %><%= f.last_name %></td>
+    <td><%= f.purpose %></td>
+    <td><%= f.description %></td>
+    <td>$<%= f.money %></td>
+    <td>$<%= f.raised %></td>
+    <td>$<%= f.amount %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

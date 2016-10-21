@@ -1,0 +1,86 @@
+<div class="row">
+	<div class="col s5 top">
+		<a class="waves-effect waves-light btn" href="/sessions/new">Already a Member?</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col s6">
+		<h2>Lender</h2>
+		<% if flash[:lender_errors] %>
+			<% flash[:lender_errors].each do |error| %>
+				<p class="error"> * <%=error%></p>
+			<% end %>
+		<% end %>
+		<form action="/sessions/regLender" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div class="input-field col s12">
+				<label for="first_name">First Name:</label>
+				<input id="first_name" type="text" name="lender[first_name]">
+			</div>
+			<div class="input-field col s12">
+				<label for="last_name">Last Name:</label>
+				<input id="last_name" type="text" name="lender[last_name]">
+			</div>
+			<div class="input-field col s12">
+				<label for="email">Email:</label>
+				<input id="email" type="email" name="lender[email]">
+			</div>
+			<div class="input-field col s12">
+				<label for="password">Password:</label>
+				<input id="password" type="password" name="lender[password]">
+			</div>
+			<div class="input-field col s12">
+				<i class="material-icons prefix">$</i>
+				<label for="money">Money:</label>
+				<input id="money" type="number" name="lender[money]">
+			</div>
+			<div class="input-field col s5 offset-s7">
+			<input class="waves-effect waves-light btn" type="submit" value="Register">
+			</div>
+		</form>
+	</div>
+	<div class="col s6">
+		<h2>Borrower</h2>
+		<% if flash[:borrower_errors] %>
+			<% flash[:borrower_errors].each do |error| %>
+				<p class="error"> * <%=error%></p>
+			<% end %>
+		<% end %>
+		<form action="/sessions/regBorrower" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div class="input-field col s12">
+				<label for="Bfirst_name">First Name:</label>
+				<input id="Bfirst_name" type="text" name="borrower[first_name]">
+			</div>
+			<div class="input-field col s12">
+				<label for="Blast_name">Last Name:</label>
+				<input id="Blast_name" type="text" name="borrower[last_name]">
+			</div>
+			<div class="input-field col s12">
+				<label for="Bemail">Email:</label>
+				<input id="Bemail" type="email" name="borrower[email]">
+			</div>
+			<div class="input-field col s12">
+				<label for="Bpassword">Password:</label>
+				<input id="Bpassword" type="password" name="borrower[password]">
+			</div>
+			<div class="input-field col s12">
+				<label for="purpose">Need Money For:</label>
+				<input id="purpose" type="text" name="borrower[purpose]">
+			</div>
+			<div class="input-field col s12">
+				<label for="description"> Description:</label>
+				<textarea id="description" type="text" name="borrower[description]"></textarea> 
+			</div>
+			<div class="input-field col s12">
+				<i class="material-icons prefix">$</i>
+				<label for="MoneyNeeded">Amount Needed:</label>
+				<input id="MoneyNeeded" type="number" name="borrower[money]">
+				<input type="hidden" name="borrower[raised]" value="0">
+			</div>
+			<div class="input-field col s5 offset-s7">
+			<input class="waves-effect waves-light btn" type="submit" value="Register">
+			</div>
+		</form>
+	</div>
+</div>
