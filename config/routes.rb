@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root "sessions#register"
+  root "sessions/register"
   get "sessions/new" => "sessions#new"
   post "sessions/regLender" => "sessions#lender_reg"
   post "sessions/regBorrower" => "sessions#borrower_reg"
