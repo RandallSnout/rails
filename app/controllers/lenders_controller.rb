@@ -11,7 +11,7 @@ class LendersController < ApplicationController
 
   def update
   	#pass in borrower id and current user to history with donate amount
-  	lend = History.create(amount: params[:donate], lender_id: current_user.id, borrower_id: params[:id])
+  	lend = History.create(amount: params[:donate], lender_id: current_user.id, borrower_id: params[:barrower])
   	#take doante amount and subtract it from lender money and add to borrower money
 	if current_user.money < params[:donate].to_i
 		flash[:error] = "Too much money"
@@ -22,6 +22,6 @@ class LendersController < ApplicationController
 		fund.update(raised: pay)
 		current_user.update(money: cashed)
 	end
-  	redirect_to :back
+  	redirect_to "/lenders/#{current_user.id}"
   end
 end

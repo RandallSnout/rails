@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 	  		redirect_to "/lenders/#{user.id}"
 	  	else
 	  		flash[:lender_errors] = user.errors.full_messages
-	  	 	redirect_to :back
+	  	 	redirect_to "/"
 	  	end	
 	end
 
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 	  		redirect_to "/borrowers/#{user.id}"
 	  	else
 	  		flash[:borrower_errors] = user.errors.full_messages
-	  	 	redirect_to :back
+	  	 	redirect_to "/"
 	  	end	
 	end
 
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 		 		redirect_to "/lenders/#{user.id}"
 		 	else
 		 		flash[:error] = "Invalid Login"
-		 		redirect_to :back
+		 		redirect_to "/sessions/new"
 		 	end
 		elsif user = Borrower.find_by_email(params[:email])
 		 	if user.authenticate(params[:password])
@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
 		 		redirect_to "/borrowers/#{user.id}"
 		 	else
 		 		flash[:error] = "Invalid Login"
-		 		redirect_to :back
+		 		redirect_to "/sessions/new"
 		 	end
 		 end
 	end

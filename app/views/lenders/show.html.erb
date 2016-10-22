@@ -27,8 +27,9 @@
     <td>
     	<div class="row">
     	<p class="col s1">$</p>
-    	<form action="/lenders/<%= f.id %>/loan" method="post">
+    	<form action="/lenders/<%= current_user.id %>" method="post">
     		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="barrower" value="<%= f.id %>">
     		<div class="col s4">
 				<input id="money" type="number" name="donate">
 			</div>

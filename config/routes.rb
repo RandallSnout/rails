@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-  root "sessions/register"
+  root "sessions#register"
   get "sessions/new" => "sessions#new"
   post "sessions/regLender" => "sessions#lender_reg"
   post "sessions/regBorrower" => "sessions#borrower_reg"
   post "sessions/login" => "sessions#login"
   delete "sessions/logout" => 'sessions#destroy'
-  post "lenders/:id/loan" => "lenders#update"
+  post "lenders/:id" => "lenders#update"
   get "lenders/:id" => "lenders#show"
   get "borrowers/:id" => "borrowers#show"
 
