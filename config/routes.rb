@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "sessions/new" => "sessions#new"
   post "sessions/regLender" => "sessions#lender_reg"
   post "sessions/regBorrower" => "sessions#borrower_reg"
-  post "session/login" => "sessions#login"
+  post "sessions/login" => "sessions#login"
   delete "sessions/logout" => 'sessions#destroy'
   post "lenders/:id/loan" => "lenders#update"
   get "lenders/:id" => "lenders#show"
