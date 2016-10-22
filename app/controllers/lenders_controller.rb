@@ -1,12 +1,12 @@
 class LendersController < ApplicationController
   before_action :current_user, only:[:edit, :update, :destroy]
   before_action :require_login, except: [:new, :create]
-  before_action :require_correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_correct_user, only: [:show, :update, :destroy]
 
   def show
   	@user = Lender.find(params[:id])
   	@freeloaders = Borrower.all
-  	@lenders = Borrower.joins(:histories).select("first_name", "last_name", "description", "purpose", "money", "raised", "amount").all
+  	@lenders = Borrower.joins(:histories).select("first_name", "last_name", "description", "purpose", "money", "raised", "amount").where("#{@user.id} = lender_id").all
   end
 
   def update

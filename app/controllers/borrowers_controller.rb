@@ -5,6 +5,6 @@ class BorrowersController < ApplicationController
 
   def show
   	@user = Borrower.find(params[:id])
-  	@helpers = Lender.joins(:histories).all
+  	@helpers = Lender.joins(:histories).select("first_name", "last_name", "email", "amount").where("#{@user.id} = borrower_id").all
   end
 end

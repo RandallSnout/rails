@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 	def lender_reg
 		user = Lender.new(lender_params)
 	  	if user.save
-	  		session[:user_id] = user.id
+	  		session[:lender_id] = user.id
 	  		redirect_to "/lenders/#{user.id}"
 	  	else
 	  		flash[:lender_errors] = user.errors.full_messages
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 	def borrower_reg
 		user = Borrower.new(borrower_params)
 	  	if user.save
-	  		session[:user_id] = user.id
+	  		session[:borrower_id] = user.id
 	  		redirect_to "/borrowers/#{user.id}"
 	  	else
 	  		flash[:borrower_errors] = user.errors.full_messages
@@ -28,15 +28,15 @@ class SessionsController < ApplicationController
 	def login
 	 	if user = Lender.find_by_email(params[:email])
 		 	if user.authenticate(params[:password])
-		 		session[:user_id] = user.id
+		 		session[:lender_id] = user.id
 		 		redirect_to "/lenders/#{user.id}"
 		 	else
 		 		flash[:error] = "Invalid Login"
 		 		redirect_to :back
 		 	end
-		else user = Borrower.find_by_email(params[:email])
+		elsif user = Borrower.find_by_email(params[:email])
 		 	if user.authenticate(params[:password])
-		 		session[:user_id] = user.id
+		 		session[:borrower_id] = user.id
 		 		redirect_to "/borrowers/#{user.id}"
 		 	else
 		 		flash[:error] = "Invalid Login"
