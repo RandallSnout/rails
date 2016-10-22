@@ -8,7 +8,7 @@
 	  <% if flash[:error] %>
 	   <p class="error"><%= flash[:error] %>
       <% end %>
-		<form action="/session/login" method="post">
+		<form action="/sessions/login" method="post">
 			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 			<div class="input-field col s12">
 				<label for="email">Email:</label>
