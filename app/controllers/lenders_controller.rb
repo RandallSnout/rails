@@ -17,7 +17,7 @@ class LendersController < ApplicationController
 		flash[:error] = "Too much money"
 	else
 		cashed = current_user.money - params[:donate].to_i
-		fund = Borrower.find(params[:id])
+		fund = Borrower.find(params[:barrower])
 		pay = fund.raised + params[:donate].to_i
 		fund.update(raised: pay)
 		current_user.update(money: cashed)
